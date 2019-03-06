@@ -46,3 +46,20 @@ function groupBy<T, K extends string | number>(
     return acc;
   }, {} as Record<K, T[]>);
 }
+
+
+const createStore = <T extends object>(initialState: T) => {
+  let state = { ...initialState };
+  const subscribers = new Set<(state: T) => void>();
+  return {
+    getState: () => state,
+    setState: (partial: Partial<T>) => {
+      state = { ...state, ...partial };
+      subscribers.forEach(fn => fn(state));
+    },
+    subscribe: (fn: (state: T) => void) => {
+      subscribers.add(fn);
+      return () => subscribers.delete(fn);
+    },
+  };
+};
