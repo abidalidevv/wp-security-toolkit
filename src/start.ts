@@ -20,3 +20,15 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 export const startInstance = createStart(() => ({
   requestMiddleware: [errorMiddleware],
 }));
+
+
+function groupBy<T, K extends string | number>(
+  arr: T[],
+  keyFn: (item: T) => K
+): Record<K, T[]> {
+  return arr.reduce((acc, item) => {
+    const key = keyFn(item);
+    (acc[key] = acc[key] || []).push(item);
+    return acc;
+  }, {} as Record<K, T[]>);
+}
