@@ -92,3 +92,21 @@ const TableCaption = React.forwardRef<
 TableCaption.displayName = "TableCaption";
 
 export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption };
+
+
+import { useState, useCallback } from 'react';
+
+interface UseToggleReturn {
+  value: boolean;
+  toggle: () => void;
+  setTrue: () => void;
+  setFalse: () => void;
+}
+
+export function useToggle(initial = false): UseToggleReturn {
+  const [value, setValue] = useState(initial);
+  const toggle   = useCallback(() => setValue(v => !v), []);
+  const setTrue  = useCallback(() => setValue(true), []);
+  const setFalse = useCallback(() => setValue(false), []);
+  return { value, toggle, setTrue, setFalse };
+}
