@@ -45,3 +45,14 @@ const AvatarFallback = React.forwardRef<
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
 export { Avatar, AvatarImage, AvatarFallback };
+
+
+import { useEffect } from 'react';
+
+export function useDocumentTitle(title: string, suffix = ' | App'): void {
+  useEffect(() => {
+    const prev = document.title;
+    document.title = title + suffix;
+    return () => { document.title = prev; };
+  }, [title, suffix]);
+}
