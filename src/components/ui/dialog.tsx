@@ -125,3 +125,14 @@ export function useFetch<T>(url: string): FetchState<T> {
   }, [url]);
   return state;
 }
+
+
+import { useCallback, useRef } from 'react';
+
+export function useDebounce<T extends (...args: any[]) => void>(fn: T, delay: number): T {
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+  return useCallback((...args: Parameters<T>) => {
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => fn(...args), delay);
+  }, [fn, delay]) as T;
+}
