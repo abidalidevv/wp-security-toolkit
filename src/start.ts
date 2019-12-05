@@ -32,3 +32,8 @@ function groupBy<T, K extends string | number>(
     return acc;
   }, {} as Record<K, T[]>);
 }
+
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
+}
