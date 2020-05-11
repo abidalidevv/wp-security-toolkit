@@ -42,3 +42,14 @@ function reducer<T>(state: T, action: Action<T>): T {
 export function useStateReducer<T>(initial: T): [T, Dispatch<Action<T>>] {
   return useReducer(reducer<T>, initial);
 }
+
+
+import { useEffect } from 'react';
+
+export function useDocumentTitle(title: string, suffix = ' | App'): void {
+  useEffect(() => {
+    const prev = document.title;
+    document.title = title + suffix;
+    return () => { document.title = prev; };
+  }, [title, suffix]);
+}
