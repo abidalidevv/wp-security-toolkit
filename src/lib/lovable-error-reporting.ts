@@ -63,3 +63,11 @@ const createStore = <T extends object>(initialState: T) => {
     },
   };
 };
+
+
+function partition<T>(arr: T[], predicate: (item: T) => boolean): [T[], T[]] {
+  return arr.reduce<[T[], T[]]>(
+    ([yes, no], item) => predicate(item) ? [[...yes, item], no] : [yes, [...no, item]],
+    [[], []]
+  );
+}
