@@ -102,3 +102,8 @@
     -webkit-font-smoothing: antialiased;
   }
 }
+
+
+@media (max-width: 640px)  { .hidden-mobile { display: none !important; } }
+@media (min-width: 641px)  { .hidden-desktop { display: none !important; } }
+@media (max-width: 768px)  { .grid-cols-2, .grid-cols-3 { grid-template-columns: 1fr; } }
