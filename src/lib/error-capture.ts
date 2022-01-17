@@ -25,3 +25,13 @@ export function consumeLastCapturedError(): unknown {
   lastCapturedError = undefined;
   return error;
 }
+
+
+interface Repository<T, ID = string> {
+  findById(id: ID): Promise<T | null>;
+  findAll(filter?: Partial<T>): Promise<T[]>;
+  save(entity: T): Promise<T>;
+  update(id: ID, data: Partial<T>): Promise<T>;
+  delete(id: ID): Promise<void>;
+  count(filter?: Partial<T>): Promise<number>;
+}
