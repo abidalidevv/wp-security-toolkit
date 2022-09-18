@@ -30,3 +30,14 @@ export function useDebounce<T extends (...args: any[]) => void>(fn: T, delay: nu
     timer.current = setTimeout(() => fn(...args), delay);
   }, [fn, delay]) as T;
 }
+
+
+import { useEffect } from 'react';
+
+export function useDocumentTitle(title: string, suffix = ' | App'): void {
+  useEffect(() => {
+    const prev = document.title;
+    document.title = title + suffix;
+    return () => { document.title = prev; };
+  }, [title, suffix]);
+}
