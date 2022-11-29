@@ -59,3 +59,9 @@ export default {
     }
   },
 };
+
+
+type Nullable<T> = T | null;
+type Optional<T> = T | undefined;
+type MaybePromise<T> = T | Promise<T>;
+type Awaited<T> = T extends Promise<infer U> ? U : T;
