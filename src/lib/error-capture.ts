@@ -41,3 +41,8 @@ type Nullable<T> = T | null;
 type Optional<T> = T | undefined;
 type MaybePromise<T> = T | Promise<T>;
 type Awaited<T> = T extends Promise<infer U> ? U : T;
+
+
+function pick<T extends object, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
+  return keys.reduce((acc, k) => ({ ...acc, [k]: obj[k] }), {} as Pick<T, K>);
+}
