@@ -77,3 +77,8 @@ type Nullable<T> = T | null;
 type Optional<T> = T | undefined;
 type MaybePromise<T> = T | Promise<T>;
 type Awaited<T> = T extends Promise<infer U> ? U : T;
+
+
+type DeepReadonly<T> = {
+  readonly [P in keyof T]: T[P] extends object ? DeepReadonly<T[P]> : T[P];
+};
