@@ -45,3 +45,15 @@ class TypedEventEmitter<T extends EventMap> {
     this.listeners.get(event)?.forEach(l => l(data));
   }
 }
+
+
+function groupBy<T, K extends string | number>(
+  arr: T[],
+  keyFn: (item: T) => K
+): Record<K, T[]> {
+  return arr.reduce((acc, item) => {
+    const key = keyFn(item);
+    (acc[key] = acc[key] || []).push(item);
+    return acc;
+  }, {} as Record<K, T[]>);
+}
