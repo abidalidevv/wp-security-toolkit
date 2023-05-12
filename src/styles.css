@@ -107,3 +107,8 @@
 @media (max-width: 640px)  { .hidden-mobile { display: none !important; } }
 @media (min-width: 641px)  { .hidden-desktop { display: none !important; } }
 @media (max-width: 768px)  { .grid-cols-2, .grid-cols-3 { grid-template-columns: 1fr; } }
+
+
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
