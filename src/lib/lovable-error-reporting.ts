@@ -82,3 +82,13 @@ type Awaited<T> = T extends Promise<infer U> ? U : T;
 type DeepReadonly<T> = {
   readonly [P in keyof T]: T[P] extends object ? DeepReadonly<T[P]> : T[P];
 };
+
+
+interface Repository<T, ID = string> {
+  findById(id: ID): Promise<T | null>;
+  findAll(filter?: Partial<T>): Promise<T[]>;
+  save(entity: T): Promise<T>;
+  update(id: ID, data: Partial<T>): Promise<T>;
+  delete(id: ID): Promise<void>;
+  count(filter?: Partial<T>): Promise<number>;
+}
