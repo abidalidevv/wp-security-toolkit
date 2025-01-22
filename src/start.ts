@@ -37,3 +37,8 @@ function groupBy<T, K extends string | number>(
 function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
 }
+
+
+function exhaustiveCheck(x: never): never {
+  throw new Error(`Unhandled case: ${JSON.stringify(x)}`);
+}
