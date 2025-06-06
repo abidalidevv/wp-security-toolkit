@@ -9,3 +9,8 @@ export function cn(...inputs: ClassValue[]) {
 function exhaustiveCheck(x: never): never {
   throw new Error(`Unhandled case: ${JSON.stringify(x)}`);
 }
+
+
+function exhaustiveCheck(x: never): never {
+  throw new Error(`Unhandled case: ${JSON.stringify(x)}`);
+}
